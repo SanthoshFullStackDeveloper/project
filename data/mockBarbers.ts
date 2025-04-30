@@ -1,0 +1,38 @@
+export const mockBarbers = [
+  {
+    id: 'barber_1',
+    name: 'Michael Johnson',
+    image: 'https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    rating: 4.8,
+    specialty: 'Classic Cuts, Fades',
+    experience: '8 years',
+    available: true,
+  },
+  {
+    id: 'barber_2',
+    name: 'David Williams',
+    image: 'https://images.pexels.com/photos/2035238/pexels-photo-2035238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    rating: 4.7,
+    specialty: 'Beard Styling, Razor Cuts',
+    experience: '6 years',
+    available: true,
+  },
+  {
+    id: 'barber_3',
+    name: 'Robert Taylor',
+    image: 'https://images.pexels.com/photos/3998429/pexels-photo-3998429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    rating: 4.9,
+    specialty: 'Modern Styles, Hair Coloring',
+    experience: '10 years',
+    available: false,
+  },
+  {
+    id: 'barber_4',
+    name: 'James Rodriguez',
+    image: 'https://images.pexels.com/photos/8869949/pexels-photo-8869949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    rating: 4.6,
+    specialty: 'Fades, Designs',
+    experience: '5 years',
+    available: true,
+  },
+];

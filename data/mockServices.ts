@@ -1,0 +1,42 @@
+export const mockServices = [
+  {
+    id: 'service_1',
+    name: 'Classic Haircut',
+    price: 25,
+    duration: '30 min',
+    description: 'Traditional haircut with scissors or clippers, includes wash and styling.',
+    image: 'https://images.pexels.com/photos/1570807/pexels-photo-1570807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    id: 'service_2',
+    name: 'Beard Trim',
+    price: 15,
+    duration: '20 min',
+    description: 'Precision beard trimming and shaping with straight razor finish.',
+    image: 'https://images.pexels.com/photos/1115615/pexels-photo-1115615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    id: 'service_3',
+    name: 'Haircut & Beard Combo',
+    price: 35,
+    duration: '45 min',
+    description: 'Complete package with haircut and beard trim for a full refresh.',
+    image: 'https://images.pexels.com/photos/3842022/pexels-photo-3842022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    id: 'service_4',
+    name: 'Hot Towel Shave',
+    price: 30,
+    duration: '30 min',
+    description: 'Luxury straight razor shave with hot towel treatment.',
+    image: 'https://images.pexels.com/photos/1797275/pexels-photo-1797275.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+  {
+    id: 'service_5',
+    name: 'Hair Coloring',
+    price: 45,
+    duration: '60 min',
+    description: 'Professional hair coloring service to cover gray or change your look.',
+    image: 'https://images.pexels.com/photos/2326694/pexels-photo-2326694.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+  },
+];

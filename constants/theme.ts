@@ -1,0 +1,106 @@
+export const theme = {
+  colors: {
+    primary: '#1A2238',
+    secondary: '#9D0208',
+    accent: '#D5A021',
+    success: '#2E7D32',
+    error: '#D32F2F',
+    warning: '#F9A825',
+    background: '#FFFFFF',
+    card: '#F5F5F6',
+    text: {
+      primary: '#1A1A1A',
+      secondary: '#4A4A4A',
+      tertiary: '#6E6E6E',
+      inverse: '#FFFFFF',
+      accent: '#D5A021',
+      error: '#D32F2F',
+    },
+    border: {
+      light: '#E1E1E1',
+      medium: '#C4C4C4',
+      dark: '#9E9E9E',
+    },
+  },
+  spacing: {
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+    xxl: 48,
+  },
+  borderRadius: {
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 16,
+    xl: 24,
+    full: 9999,
+  },
+  shadows: {
+    small: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
+    },
+    medium: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 6,
+      elevation: 4,
+    },
+    large: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 6 },
+      shadowOpacity: 0.2,
+      shadowRadius: 8,
+      elevation: 8,
+    },
+  },
+  typography: {
+    h1: {
+      fontFamily: 'Inter-Bold',
+      fontSize: 28,
+      lineHeight: 34,
+    },
+    h2: {
+      fontFamily: 'Inter-Bold',
+      fontSize: 24,
+      lineHeight: 30,
+    },
+    h3: {
+      fontFamily: 'Inter-Bold',
+      fontSize: 20,
+      lineHeight: 25,
+    },
+    subtitle: {
+      fontFamily: 'Inter-Medium',
+      fontSize: 18,
+      lineHeight: 24,
+    },
+    body: {
+      fontFamily: 'Inter-Regular',
+      fontSize: 16,
+      lineHeight: 24,
+    },
+    bodySmall: {
+      fontFamily: 'Inter-Regular',
+      fontSize: 14,
+      lineHeight: 20,
+    },
+    button: {
+      fontFamily: 'Inter-Medium',
+      fontSize: 16,
+      lineHeight: 22,
+    },
+    caption: {
+      fontFamily: 'Inter-Regular',
+      fontSize: 12,
+      lineHeight: 16,
+    },
+  },
+};
