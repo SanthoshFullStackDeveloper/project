@@ -4,6 +4,7 @@ export const mockUsers = [
     email: 'doe@gmail.com',
     password: '123456',
     name: 'John Doe',
+    gender: 'male',
     phone: '555-123-4567',
   },
   {

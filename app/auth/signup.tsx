@@ -9,6 +9,7 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { router } from 'expo-router';
 import { Mail, Lock, User, Scissors } from 'lucide-react-native';
 import Animated, { 
@@ -27,12 +28,15 @@ export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [gender, setGender] = useState('');
   const [loading, setLoading] = useState(false);
+
   const [errors, setErrors] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
+    gender: '',
   });
 
   const validateInputs = () => {
@@ -41,6 +45,7 @@ export default function SignupScreen() {
       email: '',
       password: '',
       confirmPassword: '',
+      gender: '',
     };
     
     let isValid = true;
@@ -74,6 +79,11 @@ export default function SignupScreen() {
       isValid = false;
     }
 
+    if (!gender) {
+      newErrors.gender = 'Gender is required';
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -83,7 +93,7 @@ export default function SignupScreen() {
     
     setLoading(true);
     try {
-      const success = await signup(email, password, name);
+      const success = await signup(email, password, name, gender);
       
       if (success) {
         router.replace('/(tabs)');
@@ -156,6 +166,28 @@ export default function SignupScreen() {
             error={errors.email}
             icon={<Mail size={20} color={theme.colors.text.tertiary} />}
           />
+
+          {/* Gender Picker */}
+          <View style={styles.pickerContainer}>
+            <Text style={styles.pickerLabel}>Gender</Text>
+            <View style={[
+              styles.pickerWrapper,
+              errors.gender ? { borderColor: 'red' } : {}
+            ]}>
+              <Picker
+  selectedValue={gender}
+  onValueChange={(value) => setGender(value)}
+  style={{ color: theme.colors.text.tertiary }} // set Picker text color
+>
+  <Picker.Item label="Select Gender" value=""color={theme.colors.text.tertiary} /> 
+  <Picker.Item label="Male" value="male" color={theme.colors.text.tertiary} />
+  <Picker.Item label="Female" value="female" color={theme.colors.text.tertiary} />
+  <Picker.Item label="Other" value="other" color={theme.colors.text.tertiary} />
+</Picker>
+
+            </View>
+            {errors.gender ? <Text style={styles.errorText}>{errors.gender}</Text> : null}
+          </View>
 
           <TextInput
             label="Password"
@@ -257,4 +289,28 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontFamily: 'Inter-Medium',
   },
+  pickerContainer: {
+    marginBottom: 16,
+    color: theme.colors.text.secondary,
+  },
+  pickerLabel: {
+    ...theme.typography.bodySmall,
+    marginBottom: theme.spacing.xs,
+    color: theme.colors.text.secondary,
+  },
+  pickerWrapper: {
+    
+    borderWidth: 1,
+    backgroundColor: theme.colors.background,
+    borderColor: theme.colors.border.medium,
+    borderRadius: theme.borderRadius.md,
+    overflow: 'hidden',
+    color: theme.colors.text.secondary,
+  },
+  errorText: {
+    color: theme.colors.error, // replaces 'red'
+    marginTop: 4,
+    ...theme.typography.caption,
+  },
+  
 });

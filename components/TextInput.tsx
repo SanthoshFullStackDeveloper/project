@@ -119,7 +119,12 @@ const styles = StyleSheet.create({
   },
   inputError: {
     borderColor: theme.colors.error,
+  }, pickerContainer: {
+    marginBottom: 16,
+    color: theme.colors.text.secondary,
   },
+
+
   error: {
     color: theme.colors.error,
     marginTop: 4,
