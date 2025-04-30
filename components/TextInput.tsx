@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet,
-  TextInput as RNTextInput,
   View,
   Text,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
+  TextInput as RNTextInput,
+  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import { Eye, EyeOff } from 'lucide-react-native';
@@ -19,12 +16,8 @@ interface TextInputProps {
   onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
   error?: string;
-  style?: StyleProp<ViewStyle>;
-  inputStyle?: StyleProp<TextStyle>;
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
-  multiline?: boolean;
-  numberOfLines?: number;
   icon?: React.ReactNode;
 }
 
@@ -35,72 +28,64 @@ export default function TextInput({
   onChangeText,
   secureTextEntry = false,
   error,
-  style,
-  inputStyle,
   keyboardType = 'default',
   autoCapitalize = 'none',
-  multiline = false,
-  numberOfLines = 1,
   icon,
 }: TextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(!secureTextEntry);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible(!isPasswordVisible);
-  };
+  const showPassword = secureTextEntry && isPasswordVisible;
+  const hidePassword = secureTextEntry && !isPasswordVisible;
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={styles.wrapper}>
       {label && <Text style={styles.label}>{label}</Text>}
+
       <View
         style={[
-          styles.inputContainer,
-          isFocused && styles.inputContainerFocused,
-          error && styles.inputContainerError,
+          styles.inputWrapper,
+          isFocused && styles.inputFocused,
+          error && styles.inputError,
         ]}
       >
-        {icon && <View style={styles.iconContainer}>{icon}</View>}
+        {icon && <View style={styles.icon}>{icon}</View>}
+
         <RNTextInput
-          style={[
-            styles.input,
-            icon && styles.inputWithIcon,
-            secureTextEntry && styles.inputWithToggle,
-            multiline && styles.multilineInput,
-            inputStyle,
-          ]}
+          style={[styles.input, icon && { paddingLeft: 8 }]}
           placeholder={placeholder}
-          placeholderTextColor={theme.colors.text.tertiary}
           value={value}
           onChangeText={onChangeText}
-          secureTextEntry={secureTextEntry && !isPasswordVisible}
+          secureTextEntry={hidePassword}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
-          multiline={multiline}
-          numberOfLines={multiline ? numberOfLines : 1}
+          placeholderTextColor={theme.colors.text.tertiary}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
+
         {secureTextEntry && (
           <TouchableOpacity
-            style={styles.toggleButton}
-            onPress={togglePasswordVisibility}
-            activeOpacity={0.7}
+            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+            style={styles.eyeToggle}
+            activeOpacity={0.6}
           >
-            {isPasswordVisible ? 
-              <EyeOff size={20} color={theme.colors.text.tertiary} /> : 
+            {isPasswordVisible ? (
+              <EyeOff size={20} color={theme.colors.text.tertiary} />
+            ) : (
               <Eye size={20} color={theme.colors.text.tertiary} />
-            }
+            )}
           </TouchableOpacity>
         )}
       </View>
-      {error && <Text style={styles.errorText}>{error}</Text>}
+
+      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     marginBottom: theme.spacing.md,
   },
   label: {
@@ -108,50 +93,36 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
     color: theme.colors.text.secondary,
   },
-  inputContainer: {
+  inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: theme.colors.border.medium,
     borderRadius: theme.borderRadius.md,
     backgroundColor: theme.colors.background,
-  },
-  inputContainerFocused: {
-    borderColor: theme.colors.primary,
-    ...theme.shadows.small,
-  },
-  inputContainerError: {
-    borderColor: theme.colors.error,
+    paddingHorizontal: 12,
   },
   input: {
-    ...theme.typography.body,
     flex: 1,
     paddingVertical: 12,
-    paddingHorizontal: 16,
     color: theme.colors.text.primary,
+    ...theme.typography.body,
   },
-  inputWithIcon: {
-    paddingLeft: 8,
+  icon: {
+    marginRight: 8,
   },
-  inputWithToggle: {
-    paddingRight: 40,
+  eyeToggle: {
+    marginLeft: 8,
   },
-  multilineInput: {
-    minHeight: 100,
-    textAlignVertical: 'top',
+  inputFocused: {
+    borderColor: theme.colors.primary,
   },
-  iconContainer: {
-    paddingLeft: 12,
+  inputError: {
+    borderColor: theme.colors.error,
   },
-  toggleButton: {
-    position: 'absolute',
-    right: 12,
-    height: '100%',
-    justifyContent: 'center',
-  },
-  errorText: {
-    ...theme.typography.caption,
+  error: {
     color: theme.colors.error,
     marginTop: 4,
+    ...theme.typography.caption,
   },
 });
